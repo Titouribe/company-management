@@ -2,8 +2,8 @@ package models;
 
 public enum EmployeePositions {
 
-    DEVELOPER("Desarrollador"),
-    ADMIN("Admin");
+    DEVELOPER("desarrollador"),
+    ADMIN("admin");
 
     private final String name;
 
