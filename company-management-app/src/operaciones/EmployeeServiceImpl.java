@@ -1,7 +1,6 @@
 package operaciones;
 
-import models.Company;
-import models.Employee;
+import models.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -11,6 +10,8 @@ import java.util.Scanner;
 public class EmployeeServiceImpl implements EmployeeService {
 
     private Scanner scanner;
+
+    private static List<String> positions = List.of(EmployeePositions.ADMIN.getName(), EmployeePositions.DEVELOPER.getName());
 
     public EmployeeServiceImpl(Scanner scanner) {
         this.scanner = scanner;
@@ -26,16 +27,25 @@ public class EmployeeServiceImpl implements EmployeeService {
         double salaryPerHour = Double.parseDouble(scanner.nextLine());
         System.out.println("Ingrese la fecha de ingreso a la empresa: ");
         LocalDate joinDate = null;
+
         try {
             joinDate = LocalDate.parse(scanner.nextLine());
         } catch (DateTimeParseException exception) {
             System.out.println("Ingreso una fecha invalida, debe ser en formato year-month-day, ejemplo: 2026-02-28");
             this.create();
         }
-        Employee employee = new Employee(document, name, salaryPerHour, joinDate);
-        System.out.printf("Se creo el empleado %s correctamente%n", name);
+        System.out.println("Ingrese el cargo del empleado (admin o desarrollador): ");
+        String position = scanner.nextLine();
 
-        return employee;
+        if (!positions.contains(position)) {
+            System.out.println("Ingreso un cargo invalido, debe ser admin o desarrollador. ");
+            create();
+        }
+
+        System.out.printf("Se creo el empleado %s correctamente%n", name);
+        return position.equalsIgnoreCase(EmployeePositions.ADMIN.getName()) ?
+                new Admin(document, name, salaryPerHour, joinDate) :
+                new Developer(document, name, salaryPerHour, joinDate);
     }
 
     @Override

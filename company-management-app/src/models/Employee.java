@@ -1,15 +1,14 @@
 package models;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
-public class Employee {
+public abstract class Employee {
 
-    private String document;
-    private String name;
-    private double salaryPerHour;
-    private LocalDate joinDate;
-    private Company company;
+    protected String document;
+    protected String name;
+    protected double salaryPerHour;
+    protected LocalDate joinDate;
+    protected Company company;
 
     public Employee() {
     }
@@ -46,17 +45,5 @@ public class Employee {
         setJoinDate();
     }
 
-    @Override
-    public String toString() {
-        return String.format("""
-                {
-                    "document" : %s,
-                    "name" : %s,
-                    "address" : %s,
-                    "joinDate" : %s,
-                    "company": %s,
-                    "hasJob" : %s
-                }
-                """, document, name, salaryPerHour, joinDate, Objects.nonNull(company) ? company.getName() : "Sin trabajo", Objects.isNull(company));
-    }
+    public abstract void getPosition();
 }
