@@ -57,13 +57,14 @@ public class CompanyManagementApp {
                     Company company = findCompanyByNit();
                     Employee employee = employeeService.create();
                     employee.setCompany(company);
+                    employees.add(employee);
                     companyService.addEmployee(company, employee);
                 }
                 case 4 -> {
                     Company company = findCompanyByNit();
                     companyService.countEmployees(company);
                 }
-                case 5 -> findCompanyByNit();
+                case 5 -> System.out.println(findCompanyByNit());
                 case 6 -> returnToMainMenu = true;
                 default -> System.out.println("Opción inválida. Por favor, intente de nuevo.\n");
             }
@@ -120,7 +121,7 @@ public class CompanyManagementApp {
     private static void calculateSalaryPerMonth() {
         Employee employee = findEmployeeByDocument();
         System.out.println("Ingrese el numero de horas trabajadas en el mes: \n");
-        int hours = scanner.nextInt();
+        int hours = Integer.parseInt(scanner.nextLine());
         Double totalSalary = hours * employee.getSalaryPerHour();
         System.out.printf(String.format("El salario del empleado este mes es: %s", totalSalary));
     }
