@@ -1,19 +1,18 @@
 package employee.service;
 
+import company.models.Company;
 import employee.model.Admin;
 import employee.model.Developer;
 import employee.model.Employee;
 import employee.model.EmployeePositions;
-import company.models.*;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Scanner;
 
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private Scanner scanner;
+    private final Scanner scanner;
 
     private static List<String> positions = List.of(EmployeePositions.ADMIN.getName(), EmployeePositions.DEVELOPER.getName());
 
@@ -27,15 +26,17 @@ public class EmployeeServiceImpl implements EmployeeService {
         String document = scanner.nextLine();
         System.out.println("Ingrese el nombre del empleado: ");
         String name = scanner.nextLine();
-        System.out.println("Ingrese el salario del empleado: ");
-        double salaryPerHour = Double.parseDouble(scanner.nextLine());
-        System.out.println("Ingrese la fecha de ingreso a la empresa: ");
+
+        double salaryPerHour = 0;
         LocalDate joinDate = null;
 
         try {
+            System.out.println("Ingrese el salario del empleado: ");
+            salaryPerHour = Double.parseDouble(scanner.nextLine());
+            System.out.println("Ingrese la fecha de ingreso a la empresa: ");
             joinDate = LocalDate.parse(scanner.nextLine());
-        } catch (DateTimeParseException exception) {
-            System.out.println("Ingreso una fecha invalida, debe ser en formato year-month-day, ejemplo: 2026-02-28");
+        } catch (RuntimeException exception) {
+            System.out.println("Ingreso un dato invalido, vuelva a intentarlo. ");
             this.create();
         }
         System.out.println("Ingrese el cargo del empleado (admin o desarrollador): ");
@@ -53,8 +54,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<Employee> getEmployees() {
-        return List.of();
+    public Employee getEmployeeByDocument(List<Employee> employees, String document) {
+        return employees.stream()
+                .filter(employee -> employee.getDocument().equalsIgnoreCase(document))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Empleado no encontrado, vuelva a intentarlo."));
     }
 
     @Override

@@ -26,7 +26,8 @@ public class MenuUtils {
                 2. Para listar las empresas.
                 3. Ingresar empleado a una empresa.
                 4. Obtener la cantidad de empleados de una empresa.
-                5. Para volver al menu principal.
+                5. Obtener una empresa por nit.
+                6. Para volver al menu principal.
                 
                 """);
     }
@@ -37,12 +38,15 @@ public class MenuUtils {
                 Por favor oprima:
                 1. Para crear un empleado.
                 2. Para listar los empleados.
-                3. Para volver al menu principal.
+                3. Para obtener empleado por documento.
+                4. Para obtener el salario de un empleado por mes por documento.
+                5. Para volver al menu principal.
                 
                 """);
     }
 
     public static void validateMainMenuOption(int option) {
-        if (!MAIN_MENU_OPTIONS.contains(option)) throw new RuntimeException("Ingreso una opción invalida, volviendo al menu principal.");
+        if (!MAIN_MENU_OPTIONS.contains(option))
+            throw new RuntimeException("Ingreso una opción invalida, volviendo al menu principal.");
     }
 }

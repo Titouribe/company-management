@@ -5,13 +5,13 @@ import employee.model.Employee;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Company {
+public abstract class Company {
 
-    private String nit;
-    private String name;
-    private String address;
-    private String city;
-    private List<Employee> employees = new ArrayList<>();
+    protected String nit;
+    protected String name;
+    protected String address;
+    protected String city;
+    protected List<Employee> employees = new ArrayList<>();
 
     public Company() {
     }
@@ -58,6 +58,8 @@ public class Company {
     public void addEmployee(Employee employee) {
         employees.add(employee);
     }
+
+    public abstract String getCompanyType();
 
     @Override
     public String toString() {
