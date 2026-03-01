@@ -1,7 +1,7 @@
 import company.models.Company;
-import employee.model.Employee;
 import company.service.CompanyService;
 import company.service.CompanyServiceImpl;
+import employee.model.Employee;
 import employee.service.EmployeeService;
 import employee.service.EmployeeServiceImpl;
 
@@ -63,7 +63,8 @@ public class CompanyManagementApp {
                     Company company = findCompanyByNit();
                     companyService.countEmployees(company);
                 }
-                case 5 -> returnToMainMenu = true;
+                case 5 -> findCompanyByNit();
+                case 6 -> returnToMainMenu = true;
                 default -> System.out.println("Opción inválida. Por favor, intente de nuevo.\n");
             }
         }
@@ -80,7 +81,12 @@ public class CompanyManagementApp {
                     employees.add(employeeService.create());
                 }
                 case 2 -> printEmployees();
-                case 3 -> returnToMainMenu = true;
+                case 3 -> {
+                    Employee employee = findEmployeeByDocument();
+                    System.out.println(employee);
+                }
+                case 4 -> calculateSalaryPerMonth();
+                case 5 -> returnToMainMenu = true;
                 default -> System.out.println("Opción inválida. Por favor, intente de nuevo.\n");
             }
         }
@@ -100,6 +106,25 @@ public class CompanyManagementApp {
             return findCompanyByNit();
         }
     }
+
+    private static Employee findEmployeeByDocument() {
+        System.out.println("Ingrese el numero de documento del empleado que desea consultar: \n");
+        String document = scanner.nextLine();
+        try {
+            return employeeService.getEmployeeByDocument(employees, document);
+        } catch (IllegalArgumentException exception) {
+            return findEmployeeByDocument();
+        }
+    }
+
+    private static void calculateSalaryPerMonth() {
+        Employee employee = findEmployeeByDocument();
+        System.out.println("Ingrese el numero de horas trabajadas en el mes: \n");
+        int hours = scanner.nextInt();
+        Double totalSalary = hours * employee.getSalaryPerHour();
+        System.out.printf(String.format("El salario del empleado este mes es: %s", totalSalary));
+    }
+
 
     private static void printCompanies() {
         System.out.println("Listando empresas...\n");

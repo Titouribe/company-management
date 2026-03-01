@@ -9,7 +9,7 @@ public interface EmployeeService {
 
     Employee create();
 
-    List<Employee> getEmployees();
+    Employee getEmployeeByDocument(List<Employee> employees, String document);
 
     void countEmployees(Company company);
 }

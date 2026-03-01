@@ -1,6 +1,7 @@
 package company.service;
 
 import company.models.Company;
+import company.models.DevCompany;
 import employee.model.Employee;
 
 import java.util.List;
@@ -25,8 +26,8 @@ public class CompanyServiceImpl implements CompanyService {
         System.out.println("Ingrese la ciudad de la empresa: ");
         String city = scanner.nextLine();
 
-        Company company = new Company(nit, name, address, city);
-        System.out.printf("Se creo la compañia %s correctamente", name);
+        Company company = new DevCompany(nit, name, address, city);
+        System.out.printf("Se creo la compañia %s correctamente \n", name);
 
         return company;
     }

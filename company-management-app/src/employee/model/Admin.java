@@ -30,6 +30,6 @@ public class Admin extends Employee {
                     "company": %s,
                     "hasJob" : %s
                 }
-                """, document, name, position, salaryPerHour, joinDate, Objects.nonNull(company) ? company.getName() : "Sin trabajo", Objects.isNull(company));
+                """, document, name, position, salaryPerHour, joinDate, Objects.nonNull(company) ? company.getName() : "Sin trabajo", Objects.nonNull(company));
     }
 }
