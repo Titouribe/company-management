@@ -1,7 +1,7 @@
-package operaciones;
+package employee.service;
 
-import models.Company;
-import models.Employee;
+import company.models.Company;
+import employee.model.Employee;
 
 import java.util.List;
 

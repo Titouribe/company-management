@@ -1,4 +1,4 @@
-package models;
+package employee.model;
 
 public enum EmployeePositions {
 

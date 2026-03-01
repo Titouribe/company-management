@@ -1,4 +1,6 @@
-package models;
+package employee.model;
+
+import company.models.Company;
 
 import java.time.LocalDate;
 

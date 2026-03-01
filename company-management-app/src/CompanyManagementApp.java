@@ -1,9 +1,9 @@
-import models.Company;
-import models.Employee;
-import operaciones.CompanyService;
-import operaciones.CompanyServiceImpl;
-import operaciones.EmployeeService;
-import operaciones.EmployeeServiceImpl;
+import company.models.Company;
+import employee.model.Employee;
+import company.service.CompanyService;
+import company.service.CompanyServiceImpl;
+import employee.service.EmployeeService;
+import employee.service.EmployeeServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;

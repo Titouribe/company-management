@@ -1,4 +1,6 @@
-package models;
+package company.models;
+
+import employee.model.Employee;
 
 import java.util.ArrayList;
 import java.util.List;
